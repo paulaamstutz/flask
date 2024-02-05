@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="d-flex justify-content-around bg-dark text-white align-items-center">
+    <h1>Magazines</h1>
+    <a class="text-decoration-none text-white" href="/magazines/new">Add magazines</a>
+    <a class="text-decoration-none text-white" href="/dashboard">Account</a>
+    <a class="text-decoration-none text-white" href="/logout">Logout</a>
+  </nav>
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <form action="/magazine/update/{{magazine.title}}" method="post" class="w-50 m-auto mt-5">
+      <div class="mb-3">
+        <label for="description" class="form-label">Magazine Description</label>
+        <textarea name="description" id="description" cols="30" rows="5"
+          class="form-control">{{magazine.description}}</textarea>
+      </div>
+      {% with messages = get_flashed_messages(category_filter=["description"]) %}
+      {% if messages %}
+
+      {% for message in messages %}
+      <p class="text-danger text-center">{{ message }}</p>
+      {% endfor %}
+
+      {% endif %}
+      {% endwith %}
+
+      <button type="submit" class="btn btn-primary">Update magazine</button>
+    </form>
+
+  </div>
+
+</body>
+
+</html>
